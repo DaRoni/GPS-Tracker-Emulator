@@ -2,12 +2,16 @@ from datetime import datetime
 import time
 import random
 import os
+import serial
+
+baudrate = 9600
 
 def gps_emaulate():
         with open('gps.txt', "r", encoding="utf8") as file:
                 lines = file.read().splitlines()
                 file.close
-
+        port = lines[0]
+        ser = serial.Serial(port, baudrate)        
         coor_maps_n = lines[1]
         print(coor_maps_n + '  -в десятичных градусах из Yandex Map')
         coor_n1, coor_n2 = coor_maps_n.split(".", 1)
@@ -54,7 +58,8 @@ def gps_emaulate():
                 rand2 = random.randint(10, 99)
                 gpgll = ("$GPGLL," + str(coor_gps_n) + str(rand1) + ",N," + "0" +
                          str(coor_gps_e) + str(rand2) + ",E," + coor_time + ",A,A*6F\r\n")
-                print(gpgll)                
+                print(gpgll)
+                ser.write(gpgll.encode('utf-8'))
                 time.sleep(1)
         else:
                 ser.close()
