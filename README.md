@@ -2,7 +2,7 @@
 Простенький эмулятор GPS-tracker (em_gps) работающий через COM-port.
 
 Требования:\
-Требуется эмулятор COM-ports [Null-modem emulator] (https://sourceforge.net/projects/com0com/).\
+Требуется эмулятор COM-ports [Null-modem emulator] (https://sourceforge.net/projects/com0com/). \
 Установить Python 3 с модулем pip.\
 Установить библиотеку Python -m pip install pyserial.
 
